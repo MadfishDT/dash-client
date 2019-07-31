@@ -1,6 +1,6 @@
 export class RequestService {
-    constructor() {
-
+    constructor(global) {
+        this.service = global.$service;
     }
 
     requestPost(host, body, headers = null) {
@@ -17,7 +17,7 @@ export class RequestService {
             }
         
             xhr.onreadystatechange = () => {
-                console.log(`${xhr.readyState} ${xhr.status}`);
+                //console.log(`${xhr.readyState} ${xhr.status}`);
                 if(xhr.readyState == 4 && xhr.status == 200) {
                     console.log(`success ${resolve}`);
                     resolve(true);
@@ -36,3 +36,5 @@ export class RequestService {
         });
     }
 }
+
+export default RequestService;

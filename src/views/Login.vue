@@ -5,7 +5,6 @@
                    
                     <div class="card-body px-lg-5 py-lg-5">
                         <div class="text-center text-muted mb-4">
-                      
                         </div>
                         <form role="form">
                             <base-input class="input-group-alternative mb-3"
@@ -42,7 +41,6 @@
         </div>
 </template>
 <script>
-  import { LoginService } from '../service/login.service';
   export default {
     name: 'login',
     data() {
@@ -51,16 +49,14 @@
           email: 'admin@admin.com',
           password: 'admin'
         },
-        loginService: null
       }
     },
     created () {
-      this.loginService = new LoginService();
     },
     methods: {
       login: function() {
         if(this.model.email && this.model.password) {
-            this.loginService.login(this.model.email, this.model.password)
+            this.$service.$loginservice.login(this.model.email, this.model.password)
             .then((result) => {
               if(result) {
                 this.$router.push('dashboard');

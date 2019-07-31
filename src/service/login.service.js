@@ -1,8 +1,9 @@
 import { ConfigService } from './config.service';
-import { RequestService } from './request.service';
+
 export class LoginService {
-    constructor() {
-        this.RequestService = new RequestService();
+    constructor(global) {
+        this.service = global.$service;
+        //this.RequestService = new RequestService();
         this.config = new ConfigService();
     }
 
@@ -11,10 +12,13 @@ export class LoginService {
         let url = `${this.config.host}/login`;
 
         try {
-            let result = await this.RequestService.requestPost(url,body,[{kind: 'Content-Type', value: 'application/json'}])
+            
+            let result = await this.service.$requestservice.
+            requestPost(url,body,[{kind: 'Content-Type', value: 'application/json'}]);
+
             if(result) {
                 //router.push('dashboard');
-                console.log('success login');
+            //    console.log('success login');
                 return true;
             } else {
                 console.log('fail login');
@@ -46,3 +50,5 @@ export class LoginService {
 
     //}
 }
+
+export default LoginService;
