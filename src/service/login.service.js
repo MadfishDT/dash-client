@@ -2,7 +2,7 @@ import { ConfigService } from './config.service';
 
 export class LoginService {
     constructor(global) {
-        this.service = global.$service;
+        this.requestService = global.$service.$requestservice;
         //this.RequestService = new RequestService();
         this.config = new ConfigService();
     }
@@ -13,15 +13,15 @@ export class LoginService {
 
         try {
             
-            let result = await this.service.$requestservice.
+            let result = await this.requestService.
             requestPost(url,body,[{kind: 'Content-Type', value: 'application/json'}]);
 
-            if(result) {
-                //router.push('dashboard');
-            //    console.log('success login');
+            if(result.result) {
                 return true;
             } else {
-                console.log('fail login');
+                if(result.code === 401) {
+                    console.log('fail');
+                }
                 return false;
             }
         } catch (e){
@@ -46,9 +46,21 @@ export class LoginService {
     //logout(email, password) {
         
     //}
-    //isAuthenticated() {
+    async isAuthenticated() {
+        let url = `${this.config.host}/authrequired`;
 
-    //}
+        try {
+            let result = await this.requestService.
+            requestGet(url);
+            if(result.result) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (e) {
+            return false;
+        }
+    }
 }
 
 export default LoginService;

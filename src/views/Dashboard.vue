@@ -180,8 +180,16 @@
               data: [25, 20, 30, 22, 17, 29]
             }]
           }
-        }
+        },
+        loginService: this.$service.$loginservice
       };
+    },
+    async created() {
+      let result = await this.loginService.isAuthenticated();
+      if(!result)
+      {
+        this.$router.push('login');
+      }
     },
     methods: {
       initBigChart(index) {
