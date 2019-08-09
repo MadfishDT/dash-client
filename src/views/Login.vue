@@ -49,21 +49,20 @@
           email: 'admin@admin.com',
           password: 'admin'
         },
+        modal_visible: true
       }
     },
     created () {
     },
     methods: {
-      login: function() {
+      login: async function() {
+        await this.$swal('Hello word!');
         if(this.model.email && this.model.password) {
-            this.$service.$loginservice.login(this.model.email, this.model.password)
-            .then((result) => {
-              if(result) {
+            let result = await this.$service.$loginservice.login(this.model.email, this.model.password);
+            if(result) {
                 this.$router.push('dashboard');
-              }
-            })
+            }
         } 
-         
       }
     }
   }

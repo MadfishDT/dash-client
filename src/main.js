@@ -4,11 +4,14 @@ import router from './router'
 import './registerServiceWorker'
 import ArgonDashboard from './plugins/argon-dashboard'
 import Services from './service/service'
+import VueSwal from 'vue-swal'
+
 
 Vue.config.productionTip = false
 
 Vue.use(Services);
 Vue.use(ArgonDashboard);
+Vue.use(VueSwal);
 
 new Vue({
   router,

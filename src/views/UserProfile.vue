@@ -204,6 +204,23 @@
         }
       }
     },
+    created () {
+        this.$service.$loginservice.getUserProfile()
+        .then((result) => {
+            this.model.username= result.user_name;
+            this.model.email= result.email;
+            this.model.firstName= result.first_name;
+            this.model.lastName= result.last_name;
+            this.model.address= result.address;
+            this.model.city= result.city;
+            this.model.country= result.country;
+            this.model.zipCode= result.postal_code;
+            this.model.about= result.about;
+        });
+        //let user = this.$service.$loginservice.userInfo;
+        //this.model.username = user.user_name;
+        //this.model.email = user.email;
+    },
   };
 </script>
 <style></style>

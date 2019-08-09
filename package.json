@@ -21,6 +21,7 @@
     "vue-clipboard2": "0.3.0",
     "vue-flatpickr-component": "8.1.2",
     "vue-router": "3.0.1",
+    "vue-swal": "^1.0.0",
     "vue2-transitions": "0.3.0"
   },
   "devDependencies": {
@@ -44,7 +45,9 @@
       "plugin:vue/essential",
       "eslint:recommended"
     ],
-    "rules": {"no-console": "off"},
+    "rules": {
+      "no-console": "off"
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     }
