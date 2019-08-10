@@ -36,17 +36,13 @@ export class LoginService {
             return false;
         }
     }
-
-    //logout(email, password) {
-        
-    //}
     async getUserProfile() {
         let url = `${this.config.host}/profile`;
         try {
             let result = await this.requestService.
             requestGet(url);
             if(result) {
-                this.userInfo = result.data;
+                this.user = result.data;
                 return result.data;
             } else {
                 return null;
@@ -56,19 +52,19 @@ export class LoginService {
         }
     }
 
-    async isAuthenticated() {
+    async getAuthenticated() {
         let url = `${this.config.host}/authrequired`;
 
         try {
             let result = await this.requestService.
             requestGet(url);
             if(result.result) {
-                return true;
+                return result.data;
             } else {
-                return false;
+                return null;
             }
         } catch (e) {
-            return false;
+            return null;
         }
     }
 }

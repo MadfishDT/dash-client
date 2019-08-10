@@ -204,9 +204,9 @@
         }
       }
     },
-    created () {
-        this.$service.$loginservice.getUserProfile()
-        .then((result) => {
+    created: async function() {
+        let result = await this.$service.$loginservice.getUserProfile()
+        
             this.model.username= result.user_name;
             this.model.email= result.email;
             this.model.firstName= result.first_name;
@@ -216,10 +216,11 @@
             this.model.country= result.country;
             this.model.zipCode= result.postal_code;
             this.model.about= result.about;
-        });
-        //let user = this.$service.$loginservice.userInfo;
-        //this.model.username = user.user_name;
-        //this.model.email = user.email;
+    },
+    method: {
+        async loadingProfile() {
+            this.$service.$loginservice.get
+        }
     },
   };
 </script>

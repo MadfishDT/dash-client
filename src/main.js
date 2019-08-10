@@ -5,7 +5,13 @@ import './registerServiceWorker'
 import ArgonDashboard from './plugins/argon-dashboard'
 import Services from './service/service'
 import VueSwal from 'vue-swal'
+import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 
+new Vue({
+  components: {
+    PulseLoader
+  }
+})
 
 Vue.config.productionTip = false
 

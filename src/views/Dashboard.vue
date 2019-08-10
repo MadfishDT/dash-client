@@ -185,7 +185,7 @@
       };
     },
     async created() {
-      let result = await this.loginService.isAuthenticated();
+      let result = await this.loginService.getAuthenticated();
       if(!result)
       {
         this.$router.push('login');
