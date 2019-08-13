@@ -1,5 +1,5 @@
 export class RequestService {
-    constructor(global) {
+    constructor() {
         this.service = global.$service;
     }
 

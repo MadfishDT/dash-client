@@ -4,6 +4,16 @@ import DashboardLayout from '@/layout/DashboardLayout'
 import AuthLayout from '@/layout/AuthLayout'
 Vue.use(Router)
 
+const requireAuth = () => async (from, to, next) => {
+  console.log("check logined");
+  let result = await Vue.prototype.$service.$loginservice.getAuthenticated();
+  if(!result) {
+    return next('login');
+  } else {
+    next();
+  }
+}
+
 export default new Router({
   linkExactActiveClass: 'active',
   routes: [
@@ -28,13 +38,11 @@ export default new Router({
       path: '/',
       redirect: 'dashboard',
       component: DashboardLayout,
+      beforeEnter: requireAuth(),
       children: [
         {
           path: '/dashboard',
           name: 'dashboard',
-          // route level code-splitting
-          // this generates a separate chunk (about.[hash].js) for this route
-          // which is lazy-loaded when the route is visited.
           component: () => import(/* webpackChunkName: "demo" */ './views/Dashboard.vue')
         },
         {
@@ -58,6 +66,19 @@ export default new Router({
           component: () => import(/* webpackChunkName: "demo" */ './views/Tables.vue')
         }
       ]
+    },
+    {
+      path: '/admin',
+      component: AuthLayout,
+      children: [
+        {
+          path: '/admin',
+          name: 'admin',
+          component: () => import(/* webpackChunkName: "demo" */ './views/AdminLogin.vue')
+        }
+      ]
     }
   ]
-})
+});
+
+

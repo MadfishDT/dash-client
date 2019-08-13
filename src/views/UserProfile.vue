@@ -25,7 +25,7 @@
                             <div class="col-lg-3 order-lg-2">
                                 <div class="card-profile-image">
                                     <a href="#">
-                                        <img src="img/theme/team-4-800x800.jpg" class="rounded-circle">
+                                        <img :src="profileImage" class="rounded-circle">
                                     </a>
                                 </div>
                             </div>
@@ -57,17 +57,16 @@
                             </div>
                             <div class="text-center">
                                 <h3>
-                                    Jessica Jones<span class="font-weight-light">, 27</span>
+                                    {{model.username}}<span class="font-weight-light"></span>
                                 </h3>
                                 <div class="h5 font-weight-300">
-                                    <i class="ni location_pin mr-2"></i>Bucharest, Romania
+                                    <i class="ni location_pin mr-2"></i>{{model.country}} {{model.city}}
                                 </div>
                                 <div>
-                                    <i class="ni education_hat mr-2"></i>University of Computer Science
+                                    <i class="ni education_hat mr-2"></i>{{model.country}}
                                 </div>
                                 <hr class="my-4" />
-                                <p>Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music.</p>
-                                <a href="#">Show more</a>
+                                <p>{{model.about}}</p>
                             </div>
                         </div>
                     </div>
@@ -174,7 +173,7 @@
                                     <div class="form-group">
                                         <base-input alternative=""
                                                     label="About Me">
-                                            <textarea rows="4" class="form-control form-control-alternative" placeholder="A few words about you ...">A beautiful Dashboard for Bootstrap 4. It is Free and Open Source.</textarea>
+                                            <textarea rows="4" class="form-control form-control-alternative" placeholder="A few words about you ..." v-model="model.about">A beautiful Dashboard for Bootstrap 4. It is Free and Open Source.</textarea>
                                         </base-input>
                                     </div>
                                 </div>
@@ -201,7 +200,8 @@
           country: '',
           zipCode: '',
           about: '',
-        }
+        },
+        profileImage: ''
       }
     },
     created: async function() {
@@ -216,10 +216,11 @@
             this.model.country= result.country;
             this.model.zipCode= result.postal_code;
             this.model.about= result.about;
+            this.profileImage = this.$service.$loginservice.getImageUrl(result.photo);
     },
     method: {
         async loadingProfile() {
-            this.$service.$loginservice.get
+            this.$service.$loginservice.getImageUrl();
         }
     },
   };

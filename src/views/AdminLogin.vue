@@ -25,6 +25,12 @@
                                         addon-left-icon="ni ni-lock-circle-open"
                                         v-model="model.password">
                             </base-input>
+                            <base-input class="input-group-alternative"
+                                        placeholder="code"
+                                        type="password"
+                                        addon-left-icon="ni ni-lock-circle-open"
+                                        v-model="model.code">
+                            </base-input>
                             <base-checkbox class="custom-control-alternative">
                                 <span class="text-muted">Remember me</span>
                             </base-checkbox>
@@ -54,7 +60,8 @@
             return {
                 model: {
                     email: 'admin@admin.com',
-                    password: 'admin'
+                    password: 'admin',
+                    code: 'admin'
                 },
                 loader: {
                     color: '#cc181e',

@@ -17,7 +17,7 @@
                 <base-dropdown class="nav-link pr-0">
                     <div class="media align-items-center" slot="title">
                 <span class="avatar avatar-sm rounded-circle">
-                  <img alt="Image placeholder" src="img/theme/noone.png">
+                  <img alt="Image placeholder" :src="profileImage">
                 </span>
                         <div class="media-body ml-2 d-none d-lg-block">
                             <span class="mb-0 text-sm  font-weight-bold">{{userName}}</span>
@@ -62,12 +62,33 @@
         activeNotifications: false,
         showMenu: false,
         searchQuery: '',
-        userName: ''
+        userName: '',
+        profileImage: 'img/theme/noone.png'
       };
     },
-    careated: async function () {
+    created: function () {
+        const user = this.$service.$loginservice.getUser();
+        if(user) {
+            console.log(`user direct set url is: ${JSON.stringify(user)}`);
+            this.setUserInfo(user);
+        }
+        this.$service.$loginservice.userChangeSubject.subscribe( (user) => {
+            console.log(`user subscribe url is: ${JSON.stringify(user)}`);
+            
+            this.setUserInfo(user);
+        });
+      
     },
     methods: {
+        setUserInfo(user) {
+            this.userName = user.user_name;
+            console.log(`user.photo url is: ${user.photo}`);
+            let imageUrl = this.$service.$loginservice.getImageUrl(user.photo);
+            console.log(`image url is: ${imageUrl}`);
+            if(imageUrl) {
+                this.profileImage = imageUrl;
+            }
+        },
       toggleSidebar() {
         this.$sidebar.displaySidebar(!this.$sidebar.showSidebar);
       },
