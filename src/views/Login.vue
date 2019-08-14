@@ -84,6 +84,8 @@
                     if(result) {
                         await this.$swal('Login Success');
                         this.$router.push('dashboard');
+                    } else {
+                        await this.$swal('Login Fail');
                     }
                 }
                 this.isloaderVisible = false; 

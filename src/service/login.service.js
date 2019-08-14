@@ -81,7 +81,7 @@ export class LoginService {
         this._isAthenticateChecked = true;
         try {            
             let result = await this.requestService.
-            requestPost(url,body,[{kind: 'Content-Type', value: 'application/json'}]);
+            requestPost(url,body,[{kind: 'Content-Type', value: 'application/json'},{kind: 'X-Auth-Types', value: 'admin'}]);
 
             if(result.result) {
                 this.setUser(result.data);

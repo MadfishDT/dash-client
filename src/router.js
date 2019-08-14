@@ -19,6 +19,18 @@ export default new Router({
   routes: [
     {
       path: '/',
+      redirect: 'admin',
+      component: AuthLayout,
+      children: [
+        {
+          path: '/admin',
+          name: 'admin',
+          component: () => import(/* webpackChunkName: "demo" */ './views/AdminLogin.vue')
+        }
+      ]
+    },
+    {
+      path: '/a',
       redirect: 'login',
       component: AuthLayout,
       children: [
@@ -64,17 +76,6 @@ export default new Router({
           path: '/tables',
           name: 'tables',
           component: () => import(/* webpackChunkName: "demo" */ './views/Tables.vue')
-        }
-      ]
-    },
-    {
-      path: '/admin',
-      component: AuthLayout,
-      children: [
-        {
-          path: '/admin',
-          name: 'admin',
-          component: () => import(/* webpackChunkName: "demo" */ './views/AdminLogin.vue')
         }
       ]
     }

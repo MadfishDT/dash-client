@@ -87,9 +87,9 @@
             login: async function() {
                 this.isloaderVisible = true;
                 if(this.model.email && this.model.password) {
-                    let result = await this.$service.$loginservice.login(this.model.email, this.model.password);
+                    let result = await this.$service.$loginservice.adminLogin(this.model.email, this.model.password, this.model.code);
                     if(result) {
-                        await this.$swal('Login Success');
+                        await this.$swal('admin Login Success');
                         this.$router.push('dashboard');
                     }
                 }
