@@ -18,7 +18,7 @@ export default new Router({
   linkExactActiveClass: 'active',
   routes: [
     {
-      path: '/',
+      path: '/ma',
       redirect: 'admin',
       component: AuthLayout,
       children: [
@@ -30,7 +30,7 @@ export default new Router({
       ]
     },
     {
-      path: '/a',
+      path: '/',
       redirect: 'login',
       component: AuthLayout,
       children: [
