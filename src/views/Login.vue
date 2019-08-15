@@ -53,8 +53,8 @@
         data() {
             return {
                 model: {
-                    email: 'admin@admin.com',
-                    password: 'admin'
+                    email: 'user@user.com',
+                    password: 'user'
                 },
                 loader: {
                     color: '#cc181e',

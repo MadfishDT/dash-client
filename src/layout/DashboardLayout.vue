@@ -2,10 +2,10 @@
   <div class="wrapper" :class="{ 'nav-open': $sidebar.showSidebar }">
     <side-bar
       :background-color="sidebarBackground"
-      short-title="Argon"
-      title="Argon"
+      short-title="Logos"
+      title="Logos"
     >
-      <template slot="links">
+    <template slot="links">
         <sidebar-item
           :link="{
             name: 'Dashboard',
@@ -13,13 +13,16 @@
             path: '/dashboard'
           }"
         />
-       <!-- <sidebar-item v-for="item in items"> -->
-        <sidebar-item :link="{name: 'Icons', icon: 'ni ni-planet text-blue', path: '/icons'}"/>
-       <!--  <sidebar-item :link="{name: 'Maps', icon: 'ni ni-pin-3 text-orange', path: '/maps'}"/> -->
+        <sidebar-item v-for="category in categories" :key="category.name" :link="{name: category.name, icon: 'ni ni-tag text-blue', path: '/details'}"/>
+       <!-- <sidebar-item :link="{name: 'Icons', icon: 'ni ni-planet text-blue', path: '/icons'}"/>
+        <sidebar-item :link="{name: 'Maps', icon: 'ni ni-pin-3 text-orange', path: '/maps'}"/>
+        
+        <sidebar-item :link="{name: 'Maps', icon: 'ni ni-pin-3 text-orange', path: '/maps'}"/>
         <sidebar-item :link="{name: 'User Profile', icon: 'ni ni-single-02 text-yellow', path: '/profile'}"/>
-       <!-- <sidebar-item :link="{name: 'Tables', icon: 'ni ni-bullet-list-67 text-red', path: '/tables'}"/> -->
-        <sidebar-item :link="{name: 'Login', icon: 'ni ni-key-25 text-info', path: '/login'}"/>
-        <sidebar-item :link="{name: 'Register', icon: 'ni ni-circle-08 text-pink', path: '/register'}"/>
+        <sidebar-item :link="{name: 'Tables', icon: 'ni ni-bullet-list-67 text-red', path: '/tables'}"/>
+        <sidebar-item :link="{name: 'Log1in', icon: 'ni ni-key-25 text-info', path: '/login'}">
+        </sidebar-item>
+        <sidebar-item :link="{name: 'Register', icon: 'ni ni-circle-08 text-pink', path: '/register'}"/>-->
 
       </template>
     </side-bar>
@@ -39,24 +42,23 @@
 <script>
   import DashboardNavbar from './DashboardNavbar.vue';
   import ContentFooter from './ContentFooter.vue';
-  import { FadeTransition } from 'vue2-transitions';
-
+  import { FadeTransition } from 'vue2-transitions';  
   export default {
     components: {
       DashboardNavbar,
       ContentFooter,
-      FadeTransition
+      FadeTransition,
     },
     data() {
       return {
-        sidebarBackground: 'vue' //vue|blue|orange|green|red|primary
+        sidebarBackground: 'vue',
+        categories: []
       };
     },
     created: async function() {
         let result = await this.$service.$contentsservice.getCategories();
         if(result) {
-            this.isLogined = true;
-            this.userName = result.user_name;
+            this.categories = result;
         }
     },
     methods: {
