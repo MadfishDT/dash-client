@@ -13,7 +13,7 @@
             path: '/dashboard'
           }"
         />
-        <sidebar-item v-for="category in categories" :key="category.name" :link="{name: category.name, icon: 'ni ni-tag text-blue', path: '/details'}"/>
+        <sidebar-item v-for="category in categories" :key="category.name" :link="{name: category.name, icon: 'ni ni-tag text-blue', path: '/tables'}"/>
        <!-- <sidebar-item :link="{name: 'Icons', icon: 'ni ni-planet text-blue', path: '/icons'}"/>
         <sidebar-item :link="{name: 'Maps', icon: 'ni ni-pin-3 text-orange', path: '/maps'}"/>
         

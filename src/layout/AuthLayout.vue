@@ -5,7 +5,6 @@
                   containerClasses="px-4 container"
                   expand>
             <router-link slot="brand" class="navbar-brand" to="/">
-                <img src="img/brand/white.png"/>
             </router-link>
 
             <template v-slot="{closeMenu}">
@@ -14,7 +13,6 @@
                     <div class="row">
                         <div class="col-6 collapse-brand">
                             <router-link to="/">
-                                <img src="img/brand/green.png">
                             </router-link>
                         </div>
                         <div class="col-6 collapse-close">
@@ -46,6 +44,12 @@
                         <router-link class="nav-link nav-link-icon" to="/login">
                             <i class="ni ni-key-25"></i>
                             <span class="nav-link-inner--text">Login</span>
+                        </router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link class="nav-link nav-link-icon" to="/Admin">
+                            <i class="ni ni-key-25"></i>
+                            <span class="nav-link-inner--text">Admin Login</span>
                         </router-link>
                     </li>
                     <li class="nav-item">
@@ -89,17 +93,17 @@
                     <div class="col-xl-6">
                         <div class="copyright text-center text-xl-left text-muted">
                             &copy; {{year}} <a href="https://www.google.com" class="font-weight-bold ml-1"
-                                               target="_blank">J and B Corporation</a>
+                                               target="_blank">Admin Corporation</a>
                         </div>
                     </div>
                     <div class="col-xl-6">
                         <ul class="nav nav-footer justify-content-center justify-content-xl-end">
                             <li class="nav-item">
-                                <a href="https://madfishdt.github.io" class="nav-link" target="_blank">About
+                                <a href="http://www.gov.kr/portal/main" class="nav-link" target="_blank">About
                                     Us</a>
                             </li>
                             <li class="nav-item">
-                                <a href="https://madfishdt.github.io" class="nav-link" target="_blank">Blog</a>
+                                <a href="http://www.gov.kr/portal/main" class="nav-link" target="_blank">Blog</a>
                             </li>
                             <li class="nav-item">
                                 <a href="https://opensource.org/licenses/MIT"

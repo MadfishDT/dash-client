@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "start": "vue-cli-service serve",
     "serve": "vue-cli-service serve",
     "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -21,6 +22,7 @@
     "vue-chartjs": "3.4.2",
     "vue-clipboard2": "0.3.0",
     "vue-flatpickr-component": "8.1.2",
+    "vue-good-table": "^2.18.0",
     "vue-router": "3.0.1",
     "vue-rx": "^6.2.0",
     "vue-spinner": "^1.0.3",

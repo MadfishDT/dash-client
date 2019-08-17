@@ -6,10 +6,10 @@
       <div class="col-lg-6">
         <ul class="nav nav-footer justify-content-center justify-content-lg-end">
           <li class="nav-item">
-            <a href="https://madfishdt.github.io/" class="nav-link" target="_blank">About Us</a>
+            <a href="http://www.gov.kr/portal/main" class="nav-link" target="_blank">About Us</a>
           </li>
           <li class="nav-item">
-            <a href="https://madfishdt.github.io/" class="nav-link" target="_blank">Blog</a>
+            <a href="http://www.gov.kr/portal/main" class="nav-link" target="_blank">Blog</a>
           </li>
           <li class="nav-item">
             <a href="https://opensource.org/licenses/MIT" class="nav-link" target="_blank">License</a>
