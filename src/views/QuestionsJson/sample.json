@@ -1,0 +1,25 @@
+[{
+    "question": "Do you think that aliens exist?",
+    "articles": ["yes", "no"]
+},
+
+{
+    "question": "If your job gave you a surprise three day paid break to rest and recuperate, what would you do with those three days",
+    "articles": ["find", "thanks", "you", "no thanks"]
+},
+
+{
+    "question": "If your job gave you a surprise three day paid break to rest and recuperate, what would you do with those three days",
+    "articles": ["find", "thanks", "you", "no thanks"]
+},
+{
+    "question": "What weird food combinations do you really enjoy?",
+    "articles": ["yes", "no", "I don't know"]
+},
+
+{
+    "question": "What actors or actresses play the same character in almost every movie or show they do?",
+    "table": [{"title" : "article1", "datas": ["20%", "20%", "30%", "40%"]},
+    {"title" : "article2", "datas": ["21%", "21%", "31%", "41%"]},
+    {"title" : "article3", "datas": ["22%", "22%", "32%", "42%"]}]
+}]

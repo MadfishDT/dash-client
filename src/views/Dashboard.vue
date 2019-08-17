@@ -39,7 +39,7 @@
             <card shadow type="secondary">
                  <div>
                <small>1. Do you like korea food like rice cake or kimchi?</small>
-                 <base-input placeholder="Search"
+                 <base-input placeholder=""
                             class="input-group-alternative"
                             alternative="">
                 </base-input>
