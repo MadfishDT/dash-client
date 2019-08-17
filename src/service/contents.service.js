@@ -27,6 +27,20 @@ export class ContentsService {
             return null;
         }
     }
+    async getQuestions(id) {
+        let url = `${this.config.host}/questions?id=${id}`;
+        try {
+            let result = await this.requestService.
+            requestGet(url);
+            if(result.result) {
+                return result.data;
+            } else {
+                return null;
+            }
+        } catch (e) {
+            return null;
+        }
+    }
 }
 
 export default ContentsService;

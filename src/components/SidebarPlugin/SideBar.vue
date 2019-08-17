@@ -17,8 +17,6 @@
                         </div>
                         </div> 
                     </div>
-                    
-                 
                     <template>
                         <div class=" dropdown-header noti-title">
                             <h6 class="text-overflow m-0">Welcome!</h6>
@@ -104,7 +102,6 @@
             </slot>
             <slot></slot>
             <div v-show="$sidebar.showSidebar" class="navbar-collapse collapse show" id="sidenav-collapse-main">
-                
                 <ul class="navbar-nav mb-md-3">
                     <li class="nav-item">
                             <router-link class="nav-link" to="/dashboard">

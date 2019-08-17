@@ -55,7 +55,7 @@ export default new Router({
         {
           path: '/dashboard',
           name: 'dashboard',
-          component: () => import(/* webpackChunkName: "demo" */ './views/Dashboard.vue')
+          component: () => import(/* webpackChunkName: "demo" */ './views/Dashboard.vue'),
         },
         {
           path: '/icons',

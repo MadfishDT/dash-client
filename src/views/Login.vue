@@ -82,7 +82,7 @@
                 if(this.model.email && this.model.password) {
                     let result = await this.$service.$loginservice.login(this.model.email, this.model.password);
                     if(result) {
-                        this.$router.push('dashboard');
+                        this.$router.push('dashboard?cid=1');
                     } else {
                         await this.$swal('Login Fail');
                     }

@@ -23,6 +23,8 @@
           return {
             name: '',
             path: '',
+            icon: '',
+            id: 0,
             children: []
           };
         },

@@ -67,31 +67,32 @@
     },
     data() {
       return {
+        cid: 0,
         radio: {
            radio1: "radio1",
            radio2: "radio1-1",
         },
         columns: [
             {
-            label: 'Name',
-            field: 'name',
+              label: 'Name',
+              field: 'name',
             },
             {
-            label: 'Level',
-            field: 'level',
-            type: 'number',
+              label: 'Level',
+              field: 'level',
+              type: 'number',
             },
             {
-            label: 'Created On',
-            field: 'createdAt',
-            type: 'date',
-            dateInputFormat: 'yyyy-MM-dd',
-            dateOutputFormat: 'MMM/dd/yyyy',
+              label: 'Created On',
+              field: 'createdAt',
+              type: 'date',
+              dateInputFormat: 'yyyy-MM-dd',
+              dateOutputFormat: 'MMM/dd/yyyy',
             },
             {
-            label: 'Percent',
-            field: 'score',
-            type: 'percentage',
+              label: 'Percent',
+              field: 'score',
+              type: 'percentage',
             },
         ],
         rows: [
@@ -106,6 +107,7 @@
       };
     },
     async created() {
+     
       let result = await this.loginService.getAuthenticated();
       if(!result)
       {
@@ -128,7 +130,11 @@
       }
     },
     mounted() {
-      this.initBigChart(0);
+        if(this.$route.query && this.$route.query.cid) {
+            this.cid = parseInt(this.$route.query.cid);
+            console.log(`dashboard cid is: ${this.cid}`);
+        }
+        
     }
   };
 </script>
