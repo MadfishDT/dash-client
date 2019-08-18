@@ -5,20 +5,26 @@ export class ContentsService {
 
     constructor(global) {
         this.requestService = global.$service.$requestservice;
-        //this.RequestService = new RequestService();
         this.config = new ConfigService();
         this._categoriesSubject = new Subject();
-    }
+        this._categoryChangeSubject = new Subject();
 
+    }
+    emitChangeCategory(category_id) {
+        this._categoryChangeSubject.next(category_id);
+    }
+    get categoryChangeSubject() {
+        return this._categoryChangeSubject;
+    }
     get categoriesSubject() {
-        return this._userSubject;
+        return this._categoriesSubject;
     }
     async getCategories() {
         let url = `${this.config.host}/categories`;
         try {
             let result = await this.requestService.
-            requestGet(url);
-            if(result.result) {
+                requestGet(url);
+            if (result.result) {
                 return result.data;
             } else {
                 return null;
@@ -31,8 +37,8 @@ export class ContentsService {
         let url = `${this.config.host}/questions?id=${id}`;
         try {
             let result = await this.requestService.
-            requestGet(url);
-            if(result.result) {
+                requestGet(url);
+            if (result.result) {
                 return result.data;
             } else {
                 return null;

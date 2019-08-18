@@ -34,7 +34,7 @@ export class LoginService {
     getUser() {
         if (this.isAthenticateChecked && this.user) {
             return this.user;
-        } 
+        }
     }
 
     getImageUrl(path) {
@@ -43,10 +43,10 @@ export class LoginService {
     }
 
     setUser(info) {
-        if(this.user && this.user.id !== info.id) {
+        if (this.user && this.user.id !== info.id) {
             this.user = info;
             this.userChangeSubject.next(info);
-        } else if(!this.user){
+        } else if (!this.user) {
             this.user = info;
             this.userChangeSubject.next(info);
         } else {
@@ -55,10 +55,10 @@ export class LoginService {
     }
 
     setUserProfile(info) {
-        if(this.userProfile && this.userProfile.id !== info.id) {
+        if (this.userProfile && this.userProfile.id !== info.id) {
             this.userProfile = info;
             this.userProfileChangeSubject.next(info);
-        } else if(!this.userProfile){
+        } else if (!this.userProfile) {
             this.userProfile = info;
             this.userProfileChangeSubject.next(info);
         } else {
@@ -68,7 +68,7 @@ export class LoginService {
 
     async logout() {
         let url = `${this.config.host}/logout`;
-        try{
+        try {
             await this.requestService.requestPost(url, {});
             return true;
         } catch {
@@ -76,47 +76,47 @@ export class LoginService {
         }
     }
     async adminLogin(email, password, code) {
-        const body = JSON.stringify({email: email, password: password, code: code});
+        const body = JSON.stringify({ email: email, password: password, code: code });
         let url = `${this.config.host}/adminlogin`;
         this._isAthenticateChecked = true;
-        try {            
+        try {
             let result = await this.requestService.
-            requestPost(url,body,[{kind: 'Content-Type', value: 'application/json'},{kind: 'X-Auth-Types', value: 'admin'}]);
+                requestPost(url, body, [{ kind: 'Content-Type', value: 'application/json' }, { kind: 'X-Auth-Types', value: 'admin' }]);
 
-            if(result.result) {
+            if (result.result) {
                 this.setUser(result.data);
                 console.log(JSON.stringify(this.user));
                 return true;
             } else {
-                if(result.code === 401) {
+                if (result.code === 401) {
                     console.log('fail');
                 }
                 return false;
             }
-        } catch (e){
+        } catch (e) {
             console.log(`fail login exceptional ${e}`);
             return false;
         }
     }
     async login(email, password) {
-        const body = JSON.stringify({email: email, password: password});
+        const body = JSON.stringify({ email: email, password: password });
         let url = `${this.config.host}/login`;
         this._isAthenticateChecked = true;
-        try {            
+        try {
             let result = await this.requestService.
-            requestPost(url,body,[{kind: 'Content-Type', value: 'application/json'}]);
+                requestPost(url, body, [{ kind: 'Content-Type', value: 'application/json' }]);
 
-            if(result.result) {
+            if (result.result) {
                 this.setUser(result.data);
                 console.log(JSON.stringify(this.user));
                 return true;
             } else {
-                if(result.code === 401) {
+                if (result.code === 401) {
                     console.log('fail');
                 }
                 return false;
             }
-        } catch (e){
+        } catch (e) {
             console.log(`fail login exceptional ${e}`);
             return false;
         }
@@ -126,14 +126,14 @@ export class LoginService {
         let url = `${this.config.host}/profile`;
         try {
             let result = await this.requestService.
-            requestGet(url);
-            if(result) {
+                requestGet(url);
+            if (result) {
                 this.setUserProfile(result.data);
                 return result.data;
             } else {
                 return null;
             }
-        } catch(e) {
+        } catch (e) {
             return null;
         }
     }
@@ -143,8 +143,8 @@ export class LoginService {
         this._isAthenticateChecked = true;
         try {
             let result = await this.requestService.
-            requestGet(url);
-            if(result.result) {
+                requestGet(url);
+            if (result.result) {
                 this.setUser(result.data);
                 return result.data;
             } else {

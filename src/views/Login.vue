@@ -94,7 +94,7 @@
                 const result = await this.$service.$loginservice.logout();
                 if(result) {
                     await this.$swal('Logout');
-                     this.isLogined = false;
+                    this.isLogined = false;
                 } else {
                     await this.$swal('Logout Fail');
                 }

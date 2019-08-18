@@ -1,11 +1,12 @@
 <template>
     <li class="nav-item">
         <router-link
-                :to="link.path"
-                @click.native="linkClick"
-                class="nav-link"
-                :target="link.target"
-                :href="link.path">
+            :to="link.path"
+            @click.native="linkClick"
+            class="nav-link"
+            :target="link.target"
+            :href="link.path"
+        >
             <template>
                 <i :class="link.icon"></i>
                 <span class="nav-link-text">{{ link.name }}</span>
@@ -24,6 +25,7 @@
             name: '',
             path: '',
             icon: '',
+            type: '',
             id: 0,
             children: []
           };
@@ -38,13 +40,18 @@
       }
     },
     data() {
-      return {
-        children: [],
-        collapsed: true
-      };
+        return {
+            children: [],
+            collapsed: true,
+            contentsService: this.$service.$contentsservice
+        };
     },
     methods: {
       linkClick() {
+        if(this.link.id && this.link.type && this.link.type == 'category') {
+            console.log(`click link ${this.link.id} - ${this.link.type}`);
+            this.contentsService.emitChangeCategory(this.link.id);
+        }
         if (
           this.autoClose &&
           this.$sidebar &&
