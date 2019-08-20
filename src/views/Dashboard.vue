@@ -3,38 +3,42 @@
         <base-header type="gradient-dark" class="pb-5 pb-5 pt-0 pt-md-4">
             <!-- Card stats -->
         </base-header>
-
+        <div v-if="isLoaded == false" style="display: flex; align-items: center; justify-content: center;height: 100vh;">
+            <moon-loader loading="loading" :color="loader.color" :size="loader.size"></moon-loader>
+        </div>
         <!--Charts-->
-        <div class="container-fluid mt--0 pb-5 pt-1 pt-md-2">
+        <div v-if="isLoaded" class="container-fluid mt--0 pb-5 pt-1 pt-md-2">
             <!--Tables-->
-            <card shadow type="secondary">
-                <div>
-                    <small>1. Do you like korea food like rice cake or kimchi?</small>
-                    <base-radio name="radio0" class="mb-3" v-model="radio.radio1">Yes</base-radio>
-                    <base-radio name="radio1" class="mb-3" v-model="radio.radio1">No</base-radio>
+            <card shadow type="secondary" :key="item.id" v-for="item in questions">
+                 <div v-if = "item.type=='select'">
+                    <small>{{item.data.question}}</small>
+                    <base-radio v-for="(qitem, index) in item.data.articles" :key="item.id + '-' + index" :name="item.id + '-' + index" 
+                    class="mb-3" v-model="item.answer">{{qitem}}</base-radio>
+                </div>
+                <div v-if = "item.type=='check'">
+                    <small>{{item.data.question}}</small>
+                    <base-checkbox v-for="(qitem, index) in item.data.articles" :checked="false" :key="item.id + '-' + index" name="item.id + '-' + index" 
+                    class="mb-3">{{qitem}}</base-checkbox>
+                </div>
+                <div v-if = "item.type=='text'">
+                    <small>{{item.data.question}}</small>
+                    <base-input class="mb-3" v-model="item.answer"></base-input>
+                </div>
+                <div v-if = "item.type=='table'">
+                    <small>{{item.data.question}}</small>
+                    <vue-good-table :columns="item.data.table.columns" :rows="item.data.table.rows" />
+                </div>
+                <div v-if = "item.type=='file'">
+                    <small>{{item.data.question}}</small>
+                    <base-radio v-for="(qitem, index) in item.data.articles" :key="item.id + '-' + index" :name="item.id + '-' + index" 
+                    class="mb-3" v-model="item.answer">{{qitem}}</base-radio>
+                     <base-input name="myFile" type="file"/>   
                 </div>
             </card>
-            <card shadow type="secondary">
-                <div>
-                    <small>1. Do you like korea food like rice cake or kimchi?</small>
-                    <base-radio name="radio1-1" class="mb-3" v-model="radio.radio2">Yes</base-radio>
-                    <base-radio name="radio1-2" class="mb-3" v-model="radio.radio2">No</base-radio>
-                    <base-radio name="radio1-3" class="mb-3" v-model="radio.radio2">No</base-radio>
-                    <base-radio name="radio1-4" class="mb-3" v-model="radio.radio2">No</base-radio>
-                </div>
-            </card>
-            <card shadow type="secondary">
-                <div>
-                    <small>1. Do you like korea food like rice cake or kimchi?</small>
-                    <base-input placeholder class="input-group-alternative" alternative></base-input>
-                </div>
-            </card>
-            <card shadow type="secondary">
-                <div>
-                    <vue-good-table :columns="columns" :rows="rows" />
-                </div>
-            </card>
-            <!--End tables-->
+        </div>
+        <div class="text-center">
+            <base-button type="primary" v-on:click="submit" class="my-4">Submit</base-button>
+            <base-button type="primary" v-on:click="reset" class="my-4">Reset</base-button>
         </div>
     </div>
 </template>
@@ -44,84 +48,26 @@
 // Tables
 import "vue-good-table/dist/vue-good-table.css";
 import { VueGoodTable } from "vue-good-table/src";
+import MoonLoader from 'vue-spinner/src/MoonLoader.vue';
 export default {
     components: {
-        VueGoodTable
+        VueGoodTable,
+        MoonLoader
     },
     data() {
         return {
+            isLoaded: true,
+            loader: {
+                color: '#cc181e',
+                color1: '#5bc0de',
+                size: '145px',
+            },
+            questions: [],
             cid: 0,
             radio: {
                 radio1: "radio1",
                 radio2: "radio1-1"
             },
-            columns: [
-                {
-                    label: "Name",
-                    field: "name"
-                },
-                {
-                    label: "Level",
-                    field: "level",
-                    type: "number"
-                },
-                {
-                    label: "Created On",
-                    field: "createdAt",
-                    type: "date",
-                    dateInputFormat: "yyyy-MM-dd",
-                    dateOutputFormat: "MMM/dd/yyyy"
-                },
-                {
-                    label: "Percent",
-                    field: "score",
-                    type: "percentage"
-                }
-            ],
-            rows: [
-                {
-                    id: 1,
-                    name: "type1",
-                    level: 20,
-                    createdAt: "2015-10-31",
-                    score: 0.03343
-                },
-                {
-                    id: 2,
-                    name: "type2",
-                    level: 24,
-                    createdAt: "2016-10-31",
-                    score: 0.03343
-                },
-                {
-                    id: 3,
-                    name: "type3",
-                    level: 16,
-                    createdAt: "2017-10-30",
-                    score: 0.03343
-                },
-                {
-                    id: 4,
-                    name: "type4",
-                    level: 55,
-                    createdAt: "2018-10-11",
-                    score: 0.03343
-                },
-                {
-                    id: 5,
-                    name: "type5",
-                    level: 40,
-                    createdAt: "2018-10-21",
-                    score: 0.03343
-                },
-                {
-                    id: 6,
-                    name: "type6",
-                    level: 20,
-                    createdAt: "2018-10-31",
-                    score: 0.03343
-                }
-            ],
             loginService: this.$service.$loginservice,
             contentsService: this.$service.$contentsservice
         };
@@ -138,21 +84,30 @@ export default {
         }
     },
     methods: {
-        initBigChart(index) {
-            let chartData = {
-                datasets: [
-                    {
-                        label: "Rate",
-                        data: this.bigLineChart.allData[index]
-                    }
-                ],
-                labels: ["May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-            };
-            this.bigLineChart.chartData = chartData;
-            this.bigLineChart.activeIndex = index;
+        submit() {
+
         },
-        loadCategoryInfo(id) {
-            this.contentsService.getQuestions(id);
+        reset() {
+
+        },
+      
+        async loadCategoryInfo(id) {
+            this.isLoaded = false;
+            let result = await this.contentsService.getQuestions(id);
+            console.log(result);
+            result.map( value => {
+                value.data =  JSON.parse(value.data);
+                if(value.type !== 'text' && value.type !== 'table') {
+                    value['answer'] = value.data.articles[0];
+                } 
+                else {
+                    value['answer'] = '';
+                }
+                return value;
+            });
+            console.log(`this questions: ${result} `);
+            this.questions = result;
+            this.isLoaded = true;
         }
     },
     mounted() {
