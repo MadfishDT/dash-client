@@ -17,8 +17,8 @@
                 </div>
                 <div v-if = "item.type=='check'">
                     <small>{{item.data.question}}</small>
-                    <base-checkbox v-for="(qitem, index) in item.data.articles" :checked="false" :key="item.id + '-' + index" name="item.id + '-' + index" 
-                    class="mb-3">{{qitem}}</base-checkbox>
+                    <base-checkbox v-for="(qitem, index) in item.data.articles" :key="item.id + '-' + index" name="item.id + '-' + index" 
+                    class="mb-3"  v-model="item.answer[index]">{{qitem}}</base-checkbox>
                 </div>
                 <div v-if = "item.type=='text'">
                     <small>{{item.data.question}}</small>
@@ -84,22 +84,44 @@ export default {
         }
     },
     methods: {
-        submit() {
-
+        async submit() {
+            console.log('submit pushed');
+            const result = await this.contentsService.addAnswers(this.cid, this.questions);
+            if(result) {
+                await this.$swal('success submit');
+            } else {
+                await this.$swal('fail submit');    
+            }
         },
         reset() {
+
+        },
+
+        async getAnswersFromServer() {
 
         },
       
         async loadCategoryInfo(id) {
             this.isLoaded = false;
             let result = await this.contentsService.getQuestions(id);
+            if(!result) {
+                 await this.$swal('not found data');  
+                  this.isLoaded = true;
+            }
             console.log(result);
             result.map( value => {
                 value.data =  JSON.parse(value.data);
-                if(value.type !== 'text' && value.type !== 'table') {
+                if(value.type === 'select' && value.type === 'file') {
                     value['answer'] = value.data.articles[0];
-                } 
+                    if(value.type === 'file') {
+                        value['files'] = 'none';
+                    }
+                } else if(value.type === 'check') {
+                    value['answer'] = [];
+                    value.data.articles.forEach( () => {
+                        value['answer'].push(false);    
+                    });
+                }
                 else {
                     value['answer'] = '';
                 }

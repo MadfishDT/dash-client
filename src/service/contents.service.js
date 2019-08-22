@@ -47,6 +47,16 @@ export class ContentsService {
             return null;
         }
     }
+    async addAnswers(categoriid, data) {
+        let url = `${this.config.host}/answers`;
+        let result = await this.requestService.requestPost(url, JSON.stringify({cid: categoriid, answers: data}),
+        [{ kind: 'Content-Type', value: 'application/json' }]);
+        if (result.result) {
+            return true
+        } else {
+            return false;
+        }
+    }
 }
 
 export default ContentsService;

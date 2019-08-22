@@ -4,9 +4,9 @@
             <template slot="links">
                 <sidebar-item
                     :link="{
-            name: 'Dashboard',
+            name: 'Categories',
             icon: 'ni ni-tv-2 text-primary',
-            path: '/dashboard'
+            path: '/'
           }"
                 />
                 <sidebar-item

@@ -104,12 +104,6 @@
             <div v-show="$sidebar.showSidebar" class="navbar-collapse collapse show" id="sidenav-collapse-main">
                 <ul class="navbar-nav mb-md-3">
                     <li class="nav-item">
-                            <router-link class="nav-link" to="/dashboard">
-                            <i class="ni ni-spaceship"></i> Dashboard
-                            </router-link>
-                        
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link"
                            href="#">
                             <i class="ni ni-palette"></i> Foundation
