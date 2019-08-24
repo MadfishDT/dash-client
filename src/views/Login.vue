@@ -9,7 +9,7 @@
                         <div v-if="isLogined" >
                             <h2 class="text-center">Logined: {{userName}}</h2>
                             <div class="text-center">
-                                <base-button type="primary" v-on:click="logout" class="my-4">Sign out</base-button>
+                                <base-button type="dark" v-on:click="logout" class="my-4">Sign out</base-button>
                             </div>
                         </div>
                         <form role="form" v-if="isLogined == false">
@@ -29,17 +29,17 @@
                                 <span class="text-muted">Remember me</span>
                             </base-checkbox>
                             <div class="text-center">
-                                <base-button type="primary" v-on:click="login" class="my-4">Sign in</base-button>
+                                <base-button type="dark" v-on:click="login" class="my-4">Sign in</base-button>
                             </div>
                         </form>
                     </div>
                 </div>
                 <div class="row mt-3" v-if="!isLogined">
                     <div class="col-6">
-                        <a href="#" class="text-light"><small>Forgot password?</small></a>
+                        <a href="#" class="text-dark"><small>Forgot password?</small></a>
                     </div>
                     <div class="col-6 text-right">
-                        <router-link to="/register" class="text-light"><small>Create new account</small></router-link>
+                        <router-link to="/register" class="text-dark"><small>Register</small></router-link>
                     </div>
                 </div>
             </div>
@@ -82,7 +82,7 @@
                 if(this.model.email && this.model.password) {
                     let result = await this.$service.$loginservice.login(this.model.email, this.model.password);
                     if(result) {
-                        this.$router.push('dashboard?cid=1');
+                        this.$router.push('Agreement');
                     } else {
                         await this.$swal('Login Fail');
                     }

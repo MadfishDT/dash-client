@@ -1,9 +1,8 @@
 <template>
-  <div class="content">
-    <FadeTransition :duration="200" mode="out-in">
-      <!-- your content here -->
-      <router-view></router-view>
-    </FadeTransition>
+  <div class="main-content bg-white">
+    <FadeTransition :duration="200" origin="center" mode="out-in">
+            <router-view></router-view>
+     </FadeTransition>
   </div>
 </template>
 <script>

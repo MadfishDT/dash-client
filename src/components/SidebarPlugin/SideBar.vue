@@ -13,7 +13,7 @@
                             <span class="mb-0 text-sm  font-weight-bold">{{userName}}</span>
                         </div>
                         <div class="media-body ml-2 d-none d-lg-block">
-                            <span class="mb-0 text-sm  font-weight-bold">Company: {{companyName}}</span>
+                            <span class="mb-0 text-sm  font-weight-bold">:{{companyName}}</span>
                         </div>
                         </div> 
                     </div>
@@ -100,23 +100,7 @@
                     </base-dropdown>
                 </ul>
             </slot>
-            <slot></slot>
             <div v-show="$sidebar.showSidebar" class="navbar-collapse collapse show" id="sidenav-collapse-main">
-                <ul class="navbar-nav mb-md-3">
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           href="#">
-                            <i class="ni ni-palette"></i> Foundation
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           href="#">
-                            <i class="ni ni-ui-04"></i> Components
-                        </a>
-                    </li>       
-                </ul>
-                <hr class="my-3"/>
                 <ul class="navbar-nav">
                     <slot name="links">
                     </slot>

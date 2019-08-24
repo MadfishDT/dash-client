@@ -12,11 +12,11 @@ export class ConfigService {
     }
 
     get host() {
-        if(mode === 'dev') {
+    //    if(mode === 'dev') {
             return `http://localhost:9090`;
-        } else {
-            return `http://35.193.127.219:9090`;
-        }
+    //  } else {
+    //        return `http://35.193.127.219:9090`;
+    //    }
     }
     
 }

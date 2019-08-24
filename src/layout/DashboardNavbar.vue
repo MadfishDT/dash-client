@@ -5,11 +5,7 @@
               expand>
         <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
             <div class="form-group mb-0">
-                <base-input placeholder="Search"
-                            class="input-group-alternative"
-                            alternative=""
-                            addon-right-icon="fas fa-search">
-                </base-input>
+             
             </div>
         </form>
     </base-nav>
@@ -26,16 +22,7 @@
       };
     },
     created: function () {
-    /*    const user = this.$service.$loginservice.getUser();
-        if(user) {
-            console.log(`user direct set url is: ${JSON.stringify(user)}`);
-            this.setUserInfo(user);
-        }
-        this.$service.$loginservice.userChangeSubject.subscribe( (user) => {
-            console.log(`user subscribe url is: ${JSON.stringify(user)}`);
-            
-            this.setUserInfo(user);
-        });*/
+    
       
     },
     methods: {

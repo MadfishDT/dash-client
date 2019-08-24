@@ -47,7 +47,7 @@
 
             &:before {
                 content: '';
-                display: block;
+                display: none;
                 margin: $navbar-padding-y (-$navbar-padding-x);
             }
         }
