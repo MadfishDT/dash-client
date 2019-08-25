@@ -38,9 +38,9 @@
                             <span>Support</span>
                         </router-link>
                         <div class="dropdown-divider"></div>
-                        <router-link to="/login" class="dropdown-item">
+                        <router-link to="/" class="dropdown-item">
                             <i class="ni ni-user-run"></i>
-                            <span>Logout</span>
+                            <span v-on:click="logout" >Logout</span>
                         </router-link>
                     </template>
                 </base-dropdown>
@@ -93,9 +93,9 @@
                             <span>Support</span>
                         </router-link>
                         <div class="dropdown-divider"></div>
-                        <router-link to="/login" class="dropdown-item">
+                        <router-link to="/" class="dropdown-item">
                             <i class="ni ni-support-16"></i>
-                            <span>Logout</span>
+                            <span v-on:click="logout">Logout</span>
                         </router-link>
                     </base-dropdown>
                 </ul>
@@ -155,7 +155,16 @@
                 this.profileImage = imageUrl;
             }
     },
-      closeSidebar() {
+    async logout() {
+        const result = await this.$service.$loginservice.logout();
+        if(result) {
+        await this.$swal('Logout');
+                this.$router.push('login');
+        } else {
+            await this.$swal('Logout Fail');
+        }
+    },
+    closeSidebar() {
         this.$sidebar.displaySidebar(false)
       },
       showSidebar() {
