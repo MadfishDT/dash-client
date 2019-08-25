@@ -29,10 +29,6 @@
                 <!-- Navbar items -->
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <router-link class="nav-link nav-link-icon" to="/dashboard?cid=1">
-                            <i class="ni ni-planet"></i>
-                            <span class="nav-link-inner--text">Dashboard</span>
-                        </router-link>
                     </li>
                     <li class="nav-item">
                         <router-link class="nav-link nav-link-icon" to="/login">
